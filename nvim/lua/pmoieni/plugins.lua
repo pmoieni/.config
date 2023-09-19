@@ -33,6 +33,11 @@ lazy.setup({
         lazy = true
     },
     {
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        config = true
+    },
+    {
         "mfussenegger/nvim-dap",
         dependencies = {
             "leoluz/nvim-dap-go",

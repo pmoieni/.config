@@ -15,7 +15,7 @@ local opts = {
 -- Debugger
 local dap = require("dap")
 
-function toggle_theme()
+local function toggle_theme()
     vim.o.background = (vim.o.background == "dark") and "light" or "dark"
 end
 
@@ -38,6 +38,12 @@ wc.register({
         c = { "<Cmd>BufferLinePickClose<CR>", "close buffer" },
         e = { "<Cmd>Telescope file_browser<CR>", "browse files" },
         f = { "<Cmd>Telescope find_files<CR>", "find files" },
+        t = {
+            name = "Terminal",
+            f = { "<Cmd>ToggleTerm direction=float<CR>", "float" },
+            h = { "<Cmd>ToggleTerm size=10 direction=horizontal<CR>", "horizontal" },
+            v = { "<Cmd>ToggleTerm size=60 direction=vertical<CR>", "vertical" },
+        },
         lg = { "<Cmd>Telescope live_grep<CR>", "live grep" },
         gs = { "<Cmd>Telescope git_stash<CR>", "git stash" },
         gb = { "<Cmd>Telescope git_branches<CR>", "git branches" },
