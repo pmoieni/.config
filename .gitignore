@@ -1,0 +1,9 @@
+*
+
+!.gitignore
+!nvim
+!nvim/**
+!nvim-dev
+!nvim-dev/**
+!fish
+!fish/**
