@@ -27,15 +27,11 @@ lazy.setup({
     "folke/neodev.nvim",
     "vim-test/vim-test",
     "nvim-tree/nvim-web-devicons",
+    "stevearc/conform.nvim",
     -- "Exafunction/codeium.vim", -- Codeium AI
     {
         'sainnhe/gruvbox-material',
         lazy = true
-    },
-    {
-        'akinsho/toggleterm.nvim',
-        version = "*",
-        config = true
     },
     {
         "mfussenegger/nvim-dap",
