@@ -31,10 +31,10 @@ lsp.configure('rust_analyzer', {
 })
 
 lsp.set_sign_icons({
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = '»'
+    error = '',
+    warn = '',
+    info = '',
+    hint = '',
 })
 
 lsp.ensure_installed({
