@@ -19,11 +19,11 @@ return {
         wc.register({
             ["d"] = {
                 name = "Word",
-                w = { 'vb"_d', "delete a word backwards" }
+                w = { 'vb"_d', "delete a word backwards" },
             },
             ["t"] = {
                 name = "Tab",
-                e = { "<Cmd>tabedit<CR>", "new tab" }
+                e = { "<Cmd>tabedit<CR>", "new tab" },
             },
             ["s"] = {
                 name = "Window",
@@ -49,8 +49,10 @@ return {
                 d = { vim.diagnostic.open_float, "diagnostics float" },
                 D = { "<Cmd>Telescope diagnostics<CR>", "show diagnostics" },
                 b = { "<Cmd>DapToggleBreakpoint<CR>", "debugger toggle breakpoint" },
-                B = { "<Cmd>:lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-                    "debugger conditianally toggle breakpoint" },
+                B = {
+                    "<Cmd>:lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+                    "debugger conditianally toggle breakpoint",
+                },
                 ["\\"] = { "<Cmd>Telescope buffers<CR>", "switch buffers" },
                 ["<leader>"] = { "<Cmd>Telescope resume<CR>", "resume" },
             },
@@ -61,7 +63,7 @@ return {
             gr = { vim.lsp.buf.references, "lsp references" },
             gs = { vim.lsp.buf.signature_help, "lsp signature help" },
             ["<F2>"] = { vim.lsp.buf.rename, "lsp rename" },
-            ["<F3>"] = { '<Cmd>lua vim.lsp.buf.format({async = true})<CR>', "lsp format" },
+            ["<F3>"] = { "<Cmd>lua vim.lsp.buf.format({async = true})<CR>", "lsp format" },
             ["<F4>"] = { vim.lsp.buf.code_action, "lsp code action" },
             ["<F5>"] = { "<Cmd>DapContinue<CR>", "continue debugging" },
             ["<F10>"] = { "<Cmd>DapStepOver<CR>", "debugger step over" },
@@ -70,5 +72,5 @@ return {
         }, opts)
 
         wc.setup()
-    end
+    end,
 }

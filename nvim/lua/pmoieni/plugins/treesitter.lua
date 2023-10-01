@@ -1,5 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
         local configs = require("nvim-treesitter.configs")
 
@@ -20,5 +21,5 @@ return {
         local parsers = require("nvim-treesitter.parsers").get_parser_configs()
 
         parsers.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
-    end
+    end,
 }
