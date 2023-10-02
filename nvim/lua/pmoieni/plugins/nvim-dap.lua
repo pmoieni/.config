@@ -1,9 +1,10 @@
 return {
     "mfussenegger/nvim-dap",
+    ft = { "go" },
     dependencies = {
         "leoluz/nvim-dap-go",
         "rcarriga/nvim-dap-ui",
-        "theHamsta/nvim-dap-virtual-text"
+        "theHamsta/nvim-dap-virtual-text",
     },
     config = function()
         local dap = require("dap")
@@ -24,5 +25,5 @@ return {
         dap.listeners.before.event_exited["dapui_config"] = function()
             ui.close()
         end
-    end
+    end,
 }
