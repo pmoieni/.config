@@ -1,16 +1,13 @@
 return {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
     config = function()
-        local lualine = require("lualine")
-
         local config = {
             options = {
                 icons_enabled = true,
                 theme = "auto",
                 section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
-                disabled_filetypes = { "NvimTree" },
                 globalstatus = true,
             },
             sections = {
@@ -20,7 +17,7 @@ return {
                     {
                         "filename",
                         file_status = true, -- displays file status (readonly status, modified status)
-                        path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
+                        path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
                     },
                 },
                 lualine_x = {
@@ -42,7 +39,7 @@ return {
                     {
                         "filename",
                         file_status = true, -- displays file status (readonly status, modified status)
-                        path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+                        path = 1,           -- 0 = just filename, 1 = relative path, 2 = absolute path
                     },
                 },
                 lualine_x = { "location" },
@@ -53,6 +50,6 @@ return {
             extensions = { "fugitive" },
         }
 
-        lualine.setup(config)
+        require("lualine").setup(config)
     end,
 }
