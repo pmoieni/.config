@@ -1,10 +1,10 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	dependencies = { "mason.nvim" },
+	lazy = true,
+	cmd = "ConformInfo",
 	config = function()
-		local conform = require("conform")
-
-		conform.setup({
+		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { { "prettierd", "prettier" } },

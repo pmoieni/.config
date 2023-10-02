@@ -28,7 +28,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        lazy = false,
+        build = ":MasonUpdate",
         config = true,
     },
     {
@@ -36,8 +36,9 @@ return {
         cmd = { "LspInfo", "LspInstall", "LspStart" },
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "williamboman/mason-lspconfig.nvim" },
+            { "folke/neodev.nvim", opts = {} },
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/cmp-nvim-lsp",
         },
         config = function()
             local lsp = require("lsp-zero")
@@ -81,10 +82,10 @@ return {
         },
         config = function()
             local lsp = require("lsp-zero")
-            lsp.extend_cmp()
-
             local cmp = require("cmp")
             local cmp_action = lsp.cmp_action()
+
+            lsp.extend_cmp()
 
             cmp.setup({
                 formatting = lsp.cmp_format(),
