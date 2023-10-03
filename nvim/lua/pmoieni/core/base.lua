@@ -18,10 +18,6 @@ vim.opt.mouse = "a"
 -- map leader to <space>
 vim.g.mapleader = " "
 
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- required for which-key
 vim.o.timeout = true
 vim.o.timeoutlen = 500

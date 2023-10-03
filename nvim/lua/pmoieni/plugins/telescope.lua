@@ -10,7 +10,7 @@ return {
 					hijack_netrw = false,
 					grouped = true,
 					hidden = true,
-					respect_gitignore = false
+					respect_gitignore = false,
 				},
 			},
 		})
