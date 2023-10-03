@@ -1,5 +1,11 @@
 return {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
-    -- "Exafunction/codeium.vim", -- Codeium AI
+	{
+		"nvim-lua/plenary.nvim",
+		lazy = true,
+	},
+	{
+		"nvim-tree/nvim-web-devicons",
+		lazy = true,
+	}
+	-- "Exafunction/codeium.vim", -- Codeium AI
 }

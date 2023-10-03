@@ -2,11 +2,13 @@ return {
 	{
 		'echasnovski/mini.cursorword',
 		event = { "BufReadPre", "BufNewFile" },
-		version = false
+		version = false,
+		config = true,
 	},
 	{
 		'echasnovski/mini.pairs',
 		event = "InsertEnter",
-		version = false
+		version = false,
+		config = true,
 	},
 }
