@@ -1,7 +1,7 @@
 return {
 	"marko-cerovac/material.nvim",
 	priority = 1000,
-	config = function(_, opts)
+	config = function()
 		require("material").setup({
 			contrast = {
 				floating_windows = true,

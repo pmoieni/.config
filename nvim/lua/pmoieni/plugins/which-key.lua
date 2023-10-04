@@ -30,8 +30,6 @@ return {
 				name = "Editor",
 				mm = { mf.toggle_style, "toggle theme" },
 				mf = { mf.find_style, "find theme" },
-				p = { "<Cmd>BufferLineTogglePin<CR>", "pin buffer" },
-				c = { "<Cmd>BufferLinePickClose<CR>", "close buffer" },
 				e = { "<Cmd>Telescope file_browser<CR>", "browse files" },
 				f = { "<Cmd>Telescope find_files<CR>", "find files" },
 				lg = { "<Cmd>Telescope live_grep<CR>", "live grep" },
