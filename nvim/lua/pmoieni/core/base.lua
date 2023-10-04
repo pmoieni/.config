@@ -17,7 +17,3 @@ vim.opt.mouse = "a"
 
 -- map leader to <space>
 vim.g.mapleader = " "
-
--- required for which-key
-vim.o.timeout = true
-vim.o.timeoutlen = 500
