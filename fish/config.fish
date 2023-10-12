@@ -1,4 +1,5 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+	# startup code goes here
 end
+
 eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)

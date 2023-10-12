@@ -7,3 +7,7 @@
 !nvim-dev/**
 !fish
 !fish/**
+!alacritty
+!alacritty/**
+!tmux
+!tmux/**
