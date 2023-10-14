@@ -1,20 +1,77 @@
 return {
 	"mfussenegger/nvim-dap",
-	ft = { "go" },
+	ft = {
+		"go",
+		"typescript",
+		"javascript",
+		"javascriptreact",
+		"typescriptreact",
+		"svelte",
+	},
 	dependencies = {
 		"leoluz/nvim-dap-go",
+		"mxsdev/nvim-dap-vscode-js",
 		"rcarriga/nvim-dap-ui",
 		"theHamsta/nvim-dap-virtual-text",
 	},
 	config = function()
 		local dap = require("dap")
 		local go = require("dap-go")
+		local js = require("dap-vscode-js")
 		local ui = require("dapui")
 		local vt = require("nvim-dap-virtual-text")
 
 		go.setup()
+		js.setup({
+			debugger_path = vim.fn.stdpath('data') .. "/mason/js-debug-adapter", -- Path to vscode-js-debug installation.
+			debugger_cmd = { "js-debug-adapter" },
+			adapters = {
+				'pwa-node',
+				'pwa-chrome',
+				'pwa-msedge',
+				'node-terminal',
+				'pwa-extensionHost',
+				'node',
+				'chrome',
+			}, -- which adapters to register in nvim-dap
+		})
 		ui.setup()
 		vt.setup({})
+
+		local js_based_languages = {
+			"typescript",
+			"javascript",
+			"javascriptreact",
+			"typescriptreact",
+			"svelte",
+		}
+
+		for _, language in ipairs(js_based_languages) do
+			dap.configurations[language] = {
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Launch file",
+					program = "${file}",
+					cwd = "${workspaceFolder}",
+				},
+				{
+					type = "pwa-node",
+					request = "attach",
+					name = "Attach",
+					processId = require 'dap.utils'.pick_process,
+					cwd = "${workspaceFolder}",
+				},
+				{
+					type = "pwa-chrome",
+					request = "launch",
+					name = "Start Chrome with \"localhost\"",
+					url = "http://localhost:3000",
+					webRoot = "${workspaceFolder}",
+					userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+				}
+			}
+		end
 
 		dap.listeners.after.event_initialized["dapui_config"] = function()
 			ui.open()
