@@ -9,68 +9,58 @@ return {
 		"svelte",
 	},
 	dependencies = {
-		"leoluz/nvim-dap-go",
-		"mxsdev/nvim-dap-vscode-js",
 		"rcarriga/nvim-dap-ui",
 		"theHamsta/nvim-dap-virtual-text",
+		"leoluz/nvim-dap-go",
 	},
 	config = function()
 		local dap = require("dap")
 		local go = require("dap-go")
-		local js = require("dap-vscode-js")
 		local ui = require("dapui")
 		local vt = require("nvim-dap-virtual-text")
 
-		go.setup()
-		js.setup({
-			debugger_path = vim.fn.stdpath('data') .. "/mason/js-debug-adapter", -- Path to vscode-js-debug installation.
-			debugger_cmd = { "js-debug-adapter" },
-			adapters = {
-				'pwa-node',
-				'pwa-chrome',
-				'pwa-msedge',
-				'node-terminal',
-				'pwa-extensionHost',
-				'node',
-				'chrome',
-			}, -- which adapters to register in nvim-dap
-		})
 		ui.setup()
 		vt.setup({})
+		go.setup()
 
-		local js_based_languages = {
+		dap.adapters["pwa-node"] = {
+			type = "server",
+			host = "localhost",
+			port = "${port}",
+			executable = {
+				command = "node",
+				args = {
+					vim.fn.stdpath('data') .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+					"${port}",
+				},
+			}
+		}
+
+		for _, language in ipairs({
 			"typescript",
 			"javascript",
 			"javascriptreact",
 			"typescriptreact",
 			"svelte",
-		}
-
-		for _, language in ipairs(js_based_languages) do
-			dap.configurations[language] = {
-				{
-					type = "pwa-node",
-					request = "launch",
-					name = "Launch file",
-					program = "${file}",
-					cwd = "${workspaceFolder}",
-				},
-				{
-					type = "pwa-node",
-					request = "attach",
-					name = "Attach",
-					processId = require 'dap.utils'.pick_process,
-					cwd = "${workspaceFolder}",
-				},
-				{
-					type = "pwa-chrome",
-					request = "launch",
-					name = "Start Chrome with \"localhost\"",
-					url = "http://localhost:3000",
-					webRoot = "${workspaceFolder}",
-					userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+		}) do
+			if not dap.configurations[language] then
+				dap.configurations[language] = {
+					{
+						type = 'pwa-node',
+						request = 'launch',
+						name = 'Launch file',
+						program = '${file}',
+						cwd = '${workspaceFolder}',
+					},
+					{
+						type = 'pwa-node',
+						request = 'attach',
+						name = 'Attach',
+						processId = require('dap.utils').pick_process,
+						cwd = '${workspaceFolder}',
+					},
 				}
-			}
+			end
 		end
 
 		dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -88,22 +78,13 @@ return {
 		local keymap = vim.keymap
 
 		opts.desc = "Debugger toggle breakpoint"
-		keymap.set("n", "<leader>dtb", "<cmd>DapToggleBreakpoint<CR>", opts)
+		keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", opts)
 
 		opts.desc = "Debugger conditianally toggle breakpoint"
-		keymap.set("n", "<leader>dtB",
+		keymap.set("n", "<leader>dB",
 			"<cmd>:lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 
 		opts.desc = "Continue debugging"
 		keymap.set("n", "<leader>dc", "<cmd>DapContinue<CR>", opts)
-
-		opts.desc = "Debugger step over"
-		keymap.set("n", "<leader>dso", "<cmd>DapStepOver<CR>", opts)
-
-		opts.desc = "Debugger step into"
-		keymap.set("n", "<leader>dsi", "<cmd>DapStepInto<CR>", opts)
-
-		opts.desc = "Debugger step out"
-		keymap.set("n", "<leader>dso", "<cmd>DapStepOut<CR>", opts)
 	end,
 }
