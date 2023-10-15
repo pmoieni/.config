@@ -21,32 +21,12 @@ return {
 		end,
 	},
 	{
-		"williamboman/mason.nvim",
-		build = ":MasonUpdate",
-		config = true,
-	},
-	{
-		"jay-babu/mason-nvim-dap.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"mfussenegger/nvim-dap",
-		},
-		config = function()
-			require("mason-nvim-dap").setup({
-				ensure_installed = {
-					"js-debug-adapter",
-					"delve",
-				},
-				automatic_setup = true,
-			})
-		end
-	},
-	{
 		"neovim/nvim-lspconfig",
 		cmd = { "LspInfo", "LspInstall", "LspStart" },
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"folke/neodev.nvim",
+			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 		},
