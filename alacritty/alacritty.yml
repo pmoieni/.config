@@ -1,11 +1,11 @@
 env:
-  TERM: alacritty
+  TERM: "xterm-256color"
 
 window:
   opacity: 0.9
 
 shell:
-  program: /home/linuxbrew/.linuxbrew/bin/fish
+  program: /usr/bin/fish
   args:
     - -l
     - -c
