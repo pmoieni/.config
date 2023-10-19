@@ -11,3 +11,5 @@
 !alacritty/**
 !tmux
 !tmux/**
+!wezterm
+!wezterm/**
